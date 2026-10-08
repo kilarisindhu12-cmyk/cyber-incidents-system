@@ -17,10 +17,13 @@ import {
 import { useAuth } from '@/context/AuthContext';
 import { dataService } from '@/lib/data-service';
 
-export const ClientIncidentDetail: React.FC<{ incidentIdProp?: number }> = ({ incidentIdProp }) => {
+import type { UserProfile } from '@/types';
+
+export const ClientIncidentDetail: React.FC<{ incidentIdProp?: number; customUser?: UserProfile }> = ({ incidentIdProp, customUser }) => {
   const { id } = useParams<{ id: string }>();
   const incidentId = incidentIdProp !== undefined ? incidentIdProp : Number(id);
-  const { currentUser } = useAuth();
+  const { currentUser: authUser } = useAuth();
+  const currentUser = customUser || authUser;
 
   const [newMessage, setNewMessage] = useState('');
   const [evidenceModalOpen, setEvidenceModalOpen] = useState(false);

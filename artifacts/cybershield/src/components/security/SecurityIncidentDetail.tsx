@@ -26,12 +26,13 @@ import {
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { dataService } from '@/lib/data-service';
-import type { IncidentSeverity, IncidentStatus } from '@/types';
+import type { IncidentSeverity, IncidentStatus, UserProfile } from '@/types';
 
-export const SecurityIncidentDetail: React.FC<{ incidentIdProp?: number }> = ({ incidentIdProp }) => {
+export const SecurityIncidentDetail: React.FC<{ incidentIdProp?: number; customUser?: UserProfile }> = ({ incidentIdProp, customUser }) => {
   const { id } = useParams<{ id: string }>();
   const incidentId = incidentIdProp !== undefined ? incidentIdProp : Number(id);
-  const { currentUser } = useAuth();
+  const { currentUser: authUser } = useAuth();
+  const currentUser = customUser || (authUser?.portal_type === 'security' ? authUser : dataService.getUsers().find((u) => u.portal_type === 'security') || authUser);
 
   const [activeTab, setActiveTab] = useState<'workspace' | 'impact' | 'technical' | 'evidence'>('workspace');
   const [commChannel, setCommChannel] = useState<'internal' | 'client'>('internal');

@@ -55,8 +55,13 @@ export const UnifiedPortal: React.FC = () => {
   const [clientTab, setClientTab] = useState<'dashboard' | 'new' | 'incidents' | 'reports' | 'profile'>('dashboard');
   const [securityTab, setSecurityTab] = useState<'dashboard' | 'queue' | 'sla' | 'analytics' | 'intel' | 'iocs' | 'admin' | 'profile'>('dashboard');
 
-  // Selected incident ID for split-view comparison
-  const [selectedIncidentId, setSelectedIncidentId] = useState<number>(101);
+  // Selected incident ID for split-view comparison (default to 102 Acme Corp Phishing incident)
+  const [selectedIncidentId, setSelectedIncidentId] = useState<number>(102);
+
+  // Derive active split incident & matching personas for side-by-side demonstration
+  const splitIncident = dataService.getIncidents().find((i) => i.id === selectedIncidentId) || dataService.getIncidents()[0];
+  const splitClientUser = allUsers.find((u) => u.organization_id === splitIncident?.organizationId && u.portal_type === 'client') || allUsers.find((u) => u.email === 'morgan.lee@acme.com');
+  const splitSecurityUser = allUsers.find((u) => u.portal_type === 'security') || allUsers.find((u) => u.email === 'alex.rivera@cybershield.soc');
 
   // Quick switch user persona
   const handleSelectUser = async (userId: string) => {
@@ -387,11 +392,13 @@ export const UnifiedPortal: React.FC = () => {
                 <div className="bg-[#173e4a] text-white p-3.5 flex items-center justify-between border-b border-[#115e59]">
                   <div className="flex items-center gap-2">
                     <ShieldCheck size={18} className="text-[#2dd4bf]" />
-                    <span className="font-extrabold text-sm tracking-tight">CLIENT PORTAL (ACME CORP)</span>
+                    <span className="font-extrabold text-sm tracking-tight">
+                      CLIENT PORTAL ({splitIncident?.organizationName?.toUpperCase() || 'ACME CORP'})
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#2dd4bf]/20 text-[#2dd4bf]">
-                      Morgan Lee (Employee)
+                      {splitClientUser?.full_name || 'Morgan Lee'} ({splitClientUser?.role || 'Employee'})
                     </span>
                     <button
                       onClick={() => setActivePortal('client')}
@@ -417,7 +424,7 @@ export const UnifiedPortal: React.FC = () => {
                   {/* Quick Action */}
                   <div className="p-4 bg-white rounded-xl border border-[#dfe7e9] shadow-xs flex items-center justify-between">
                     <div>
-                      <div className="text-xs font-bold text-[#19333c]">Reported Incidents: Acme Corp</div>
+                      <div className="text-xs font-bold text-[#19333c]">Reported Incidents: {splitIncident?.organizationName || 'Acme Corp'}</div>
                       <div className="text-[11px] text-[#687f87]">Client users can view status, add info, and message analysts.</div>
                     </div>
                     <button
@@ -430,7 +437,7 @@ export const UnifiedPortal: React.FC = () => {
 
                   {/* Render Client Incident Detail */}
                   <div className="bg-white rounded-xl border border-[#dfe7e9] p-4 shadow-xs">
-                    <ClientIncidentDetail incidentIdProp={selectedIncidentId} />
+                    <ClientIncidentDetail incidentIdProp={selectedIncidentId} customUser={splitClientUser} />
                   </div>
                 </div>
               </div>
@@ -445,7 +452,7 @@ export const UnifiedPortal: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] px-2 py-0.5 rounded bg-[#00f2fe]/20 text-[#00f2fe]">
-                      Alex Rivera (SOC Analyst)
+                      {splitSecurityUser?.full_name || 'Alex Rivera'} (SOC Analyst)
                     </span>
                     <button
                       onClick={() => setActivePortal('security')}
@@ -481,7 +488,7 @@ export const UnifiedPortal: React.FC = () => {
 
                   {/* Render Security Incident Detail with 10-Stage Workflow */}
                   <div className="bg-[#091226] rounded-xl border border-[#14234b] p-4 shadow-xs">
-                    <SecurityIncidentDetail incidentIdProp={selectedIncidentId} />
+                    <SecurityIncidentDetail incidentIdProp={selectedIncidentId} customUser={splitSecurityUser} />
                   </div>
                 </div>
               </div>
