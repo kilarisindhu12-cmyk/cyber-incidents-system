@@ -1,0 +1,2819 @@
+# MEGA PROMPT — COMPLETE CYBER INCIDENT REPORTING SYSTEM
+
+You are an expert **full-stack developer, cybersecurity engineer, SOC architect, AI engineer, database architect, UI/UX designer, DevSecOps engineer, and QA engineer**.
+
+Your task is to build a **complete, production-style, full-stack Cyber Incident Reporting, Tracking, Investigation, and Response Management System**.
+
+The application name is:
+
+# 🛡️ CyberShield
+
+### Tagline:
+**Report. Categorize. Track. Respond. Resolve. Stay Secure.**
+
+---
+
+# 1. OFFICIAL PROBLEM STATEMENT
+
+Build a platform where organizations can:
+
+- Report cybersecurity incidents
+- Categorize incidents
+- Prioritize incidents
+- Calculate risk
+- Assign incidents to security personnel
+- Investigate incidents
+- Collect and manage evidence
+- Track incident status
+- Communicate with stakeholders
+- Escalate critical incidents
+- Resolve incidents
+- Close incidents
+- Analyze incident trends
+- Generate reports
+- Maintain complete audit history
+
+The central workflow must be:
+
+```text
+REPORT
+   ↓
+CATEGORIZE
+   ↓
+TRIAGE
+   ↓
+PRIORITIZE
+   ↓
+ASSIGN
+   ↓
+INVESTIGATE
+   ↓
+CONTAIN
+   ↓
+ERADICATE
+   ↓
+RECOVER
+   ↓
+RESOLVE
+   ↓
+CLOSE
+   ↓
+ANALYZE
+```
+
+Do NOT build this as a simple CRUD application.
+
+Build it as a realistic **Security Operations / Incident Management platform**.
+
+---
+
+# 2. CORE PRODUCT VISION
+
+Organizations often receive cyber incident reports through:
+
+- Email
+- Phone
+- Chat applications
+- Spreadsheets
+- Manual forms
+- Verbal communication
+
+This causes:
+
+- Delayed response
+- Missing incidents
+- Poor prioritization
+- Lack of ownership
+- Poor evidence management
+- No centralized history
+- Poor management visibility
+- Difficult reporting
+
+CyberShield must solve these problems through one centralized platform.
+
+---
+
+# 3. TARGET USERS
+
+Implement these roles:
+
+## EMPLOYEE / REPORTER
+
+Can:
+
+- Register
+- Login
+- Report incident
+- Save draft
+- Upload evidence
+- Track own incidents
+- Add comments
+- Respond to questions
+- Receive notifications
+- View resolution
+- Provide feedback
+
+---
+
+## SECURITY ANALYST
+
+Can:
+
+- View incident queue
+- Review incidents
+- Categorize
+- Triage
+- Set severity
+- Calculate risk
+- Assign ownership
+- Investigate
+- Review evidence
+- Add IOCs
+- Add investigation notes
+- Update status
+- Contain incidents
+- Resolve incidents
+- Reopen incidents
+- Use AI assistant
+- Generate reports
+
+---
+
+## SECURITY MANAGER
+
+Can:
+
+- View organization incidents
+- Monitor critical incidents
+- Monitor analysts
+- Assign/reassign incidents
+- Approve closure
+- Monitor SLA
+- Escalate incidents
+- View analytics
+- Generate management reports
+
+---
+
+## ADMINISTRATOR
+
+Can:
+
+- Manage users
+- Manage roles
+- Manage permissions
+- Manage departments
+- Manage categories
+- Configure SLA
+- Configure notifications
+- Configure security settings
+- View audit logs
+- Manage system configuration
+
+---
+
+## AUDITOR
+
+Read-only access to:
+
+- Incidents
+- Evidence metadata
+- Timelines
+- Audit logs
+- Reports
+
+---
+
+## SUPER ADMIN
+
+Can manage:
+
+- Organizations
+- Administrators
+- Global settings
+- Integrations
+- Platform configuration
+
+---
+
+# 4. TECHNOLOGY STACK
+
+Use:
+
+## Frontend
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- shadcn/ui
+- React Router
+- React Hook Form
+- Zod
+- Axios
+- TanStack Query
+- Recharts
+- Lucide React
+- date-fns
+
+## Backend
+
+- Node.js
+- Express.js
+- TypeScript
+- REST APIs
+- Zod
+- Middleware architecture
+
+## Database
+
+Use:
+
+**Supabase PostgreSQL**
+
+Use Supabase for:
+
+- PostgreSQL
+- Authentication
+- Storage
+- Row Level Security
+- Realtime
+
+## AI
+
+Use a configurable LLM provider through environment variables.
+
+The AI layer must be replaceable.
+
+Never hard-code API keys.
+
+---
+
+# 5. UI/UX REQUIREMENTS
+
+Create a professional enterprise cybersecurity interface.
+
+Do NOT make it look like a basic student CRUD application.
+
+Design should feel like:
+
+- SOC dashboard
+- Enterprise security platform
+- Modern SaaS application
+
+Use:
+
+- Dark mode
+- Light mode
+- Responsive design
+- Sidebar
+- Top navigation
+- Dashboard cards
+- Data tables
+- Charts
+- Timeline
+- Incident status badges
+- Severity badges
+- Risk indicators
+- Modals
+- Toast notifications
+- Confirmation dialogs
+- Skeleton loaders
+- Empty states
+- Error states
+
+Use professional cybersecurity visual language without excessive animations.
+
+---
+
+# 6. LANDING PAGE
+
+Create:
+
+## Hero
+
+**CyberShield**
+
+> Report. Categorize. Track. Respond. Resolve. Stay Secure.
+
+Description:
+
+> A centralized cybersecurity incident management platform that helps organizations report, investigate, track, and resolve security incidents efficiently.
+
+Buttons:
+
+- Report Incident
+- Login
+- Explore Demo
+
+---
+
+Create sections:
+
+### Why CyberShield?
+
+- Centralized incident reporting
+- Faster response
+- Smart categorization
+- Evidence management
+- Risk-based prioritization
+- Real-time tracking
+- Security analytics
+- Complete audit history
+
+---
+
+# 7. AUTHENTICATION
+
+Implement:
+
+- Registration
+- Login
+- Logout
+- Email verification
+- Forgot password
+- Reset password
+- Change password
+- Session management
+- Protected routes
+- Role-based routing
+- Account activation/deactivation
+- Session expiration
+- Rate limiting
+- MFA-ready architecture
+
+Never store passwords in plain text.
+
+Use Supabase Auth where appropriate.
+
+---
+
+# 8. MULTI-ORGANIZATION ARCHITECTURE
+
+Support multiple organizations.
+
+Every organization has:
+
+- Users
+- Departments
+- Incidents
+- Categories
+- Analysts
+- Managers
+- SLA policies
+- Settings
+
+Strictly isolate organization data.
+
+Users from Organization A must never access Organization B data.
+
+Enforce this through:
+
+- Backend authorization
+- Supabase RLS
+- Organization IDs
+
+---
+
+# 9. USER PROFILE
+
+Create profile page.
+
+Show:
+
+- Name
+- Email
+- Role
+- Department
+- Organization
+- Profile image
+- Account status
+- Last login
+
+Allow:
+
+- Edit profile
+- Change password
+- Notification preferences
+
+---
+
+# 10. INCIDENT REPORTING WIZARD
+
+Create a multi-step professional incident-reporting form.
+
+## STEP 1 — BASIC INFORMATION
+
+Fields:
+
+- Incident title
+- Description
+- Category
+- Incident type
+- Incident date
+- Discovery date
+- Department
+- Location
+- Affected system
+- Affected device
+
+---
+
+## STEP 2 — IMPACT
+
+Fields:
+
+- Number of affected users
+- Affected systems
+- Affected devices
+- Data affected
+- Sensitive information involved
+- Personal data involved
+- Financial impact
+- Operational impact
+- Reputation impact
+- Downtime
+
+---
+
+## STEP 3 — TECHNICAL INFORMATION
+
+Fields:
+
+- IP address
+- URL
+- Domain
+- Email address
+- Hostname
+- File hash
+- Malware name
+- Username
+- Device
+- Operating system
+- Port
+- Protocol
+- Additional technical information
+
+---
+
+## STEP 4 — EVIDENCE
+
+Allow:
+
+- Screenshots
+- PDFs
+- Logs
+- Text files
+- Documents
+- Images
+
+Display:
+
+- Filename
+- File size
+- File type
+- Hash
+- Upload time
+
+---
+
+## STEP 5 — REVIEW
+
+Display all entered information.
+
+Allow user to edit before submission.
+
+Button:
+
+**Submit Incident**
+
+---
+
+# 11. SAVE DRAFT
+
+Users should be able to:
+
+**Save as Draft**
+
+and continue later.
+
+Drafts must not appear as active incidents until submitted.
+
+---
+
+# 12. INCIDENT ID
+
+Automatically generate:
+
+```text
+INC-2026-000001
+INC-2026-000002
+INC-2026-000003
+```
+
+IDs must be unique.
+
+---
+
+# 13. INCIDENT CATEGORIES
+
+Include:
+
+1. Phishing
+2. Malware
+3. Ransomware
+4. Account Compromise
+5. Credential Theft
+6. Unauthorized Access
+7. Data Breach
+8. Data Leakage
+9. Social Engineering
+10. Suspicious Email
+11. DDoS
+12. Insider Threat
+13. Lost Device
+14. Stolen Device
+15. Website Attack
+16. Web Application Incident
+17. Network Security Incident
+18. Cloud Security Incident
+19. Mobile Security Incident
+20. IoT Security Incident
+21. Financial Fraud
+22. Identity Theft
+23. Privacy Incident
+24. Policy Violation
+25. Other
+
+Admins can add custom categories.
+
+---
+
+# 14. AI CATEGORY SUGGESTION
+
+When a reporter enters a description, the AI should suggest a category.
+
+Example:
+
+Input:
+
+> "I received an email asking me to verify my Microsoft account using a suspicious link."
+
+Output:
+
+```text
+Suggested Category:
+Phishing
+
+Confidence:
+94%
+```
+
+Buttons:
+
+- Accept
+- Change
+
+Never force AI classification.
+
+---
+
+# 15. SEVERITY
+
+Use:
+
+### LOW
+
+Minor impact.
+
+### MEDIUM
+
+Moderate impact.
+
+### HIGH
+
+Significant impact.
+
+### CRITICAL
+
+Severe impact.
+
+---
+
+# 16. PRIORITY
+
+Separate severity from priority.
+
+Priority:
+
+- Low
+- Normal
+- High
+- Urgent
+
+Example:
+
+```text
+Severity: HIGH
+Priority: URGENT
+```
+
+---
+
+# 17. CIA IMPACT
+
+Implement:
+
+### Confidentiality
+
+### Integrity
+
+### Availability
+
+Each:
+
+- None
+- Low
+- Medium
+- High
+- Critical
+
+---
+
+# 18. RISK SCORING
+
+Calculate risk:
+
+**0–100**
+
+Factors:
+
+- Likelihood
+- Severity
+- Business impact
+- Data sensitivity
+- Number of users
+- System criticality
+- CIA impact
+- Potential spread
+
+Display:
+
+```text
+0–25     LOW
+26–50    MODERATE
+51–75    HIGH
+76–100   CRITICAL
+```
+
+Allow analysts to override AI/system recommendations.
+
+Require reason for manual override.
+
+---
+
+# 19. INCIDENT LIFECYCLE
+
+Implement:
+
+```text
+DRAFT
+ ↓
+REPORTED
+ ↓
+UNDER REVIEW
+ ↓
+TRIAGED
+ ↓
+ASSIGNED
+ ↓
+INVESTIGATING
+ ↓
+CONTAINED
+ ↓
+ERADICATED
+ ↓
+RECOVERING
+ ↓
+RESOLVED
+ ↓
+CLOSED
+```
+
+Also support:
+
+- Escalated
+- Reopened
+- Rejected
+- Duplicate
+- False Positive
+
+Implement valid state transitions.
+
+---
+
+# 20. INCIDENT QUEUE
+
+Create:
+
+# Security Incident Queue
+
+Columns:
+
+- Incident ID
+- Title
+- Category
+- Severity
+- Priority
+- Risk
+- Status
+- Reporter
+- Department
+- Analyst
+- SLA
+- Created
+- Updated
+
+Features:
+
+- Search
+- Sort
+- Filter
+- Pagination
+- Date range
+- Saved filters
+- Export
+- Bulk actions where authorized
+
+---
+
+# 21. ADVANCED SEARCH
+
+Search:
+
+- Incident ID
+- Title
+- Description
+- Category
+- Reporter
+- Analyst
+- IOC
+- Domain
+- IP
+- Hash
+
+Only show authorized results.
+
+---
+
+# 22. INCIDENT DETAILS
+
+Create a comprehensive incident details page.
+
+Sections:
+
+### Overview
+
+### Description
+
+### Impact
+
+### Technical Details
+
+### Severity
+
+### Risk
+
+### Assignment
+
+### Investigation
+
+### Evidence
+
+### IOCs
+
+### Comments
+
+### Timeline
+
+### SLA
+
+### Resolution
+
+### Audit History
+
+---
+
+# 23. INCIDENT ASSIGNMENT
+
+Allow:
+
+- Assign analyst
+- Reassign analyst
+- Claim incident
+- Change owner
+- Assign manager
+
+Prevent critical incidents from remaining unassigned indefinitely.
+
+---
+
+# 24. INVESTIGATION WORKSPACE
+
+Create a dedicated investigation interface.
+
+Sections:
+
+### Investigation Summary
+
+### Findings
+
+### Root Cause
+
+### Attack Vector
+
+### Scope
+
+### Impact
+
+### Containment
+
+### Eradication
+
+### Recovery
+
+### Remediation
+
+### Lessons Learned
+
+### Final Resolution
+
+---
+
+# 25. INVESTIGATION CHECKLIST
+
+Create:
+
+```text
+☐ Verify incident
+☐ Identify affected assets
+☐ Identify affected users
+☐ Preserve evidence
+☐ Determine scope
+☐ Collect indicators
+☐ Contain incident
+☐ Remove threat
+☐ Restore services
+☐ Validate recovery
+☐ Document findings
+☐ Close incident
+```
+
+Allow admins to customize checklist templates.
+
+---
+
+# 26. EVIDENCE MANAGEMENT
+
+Every evidence item must contain:
+
+- Evidence ID
+- Filename
+- Type
+- Size
+- Hash
+- Description
+- Uploaded by
+- Uploaded at
+- Accessed by
+- Access time
+- Download history
+
+Use SHA-256.
+
+---
+
+# 27. CHAIN OF CUSTODY
+
+Create immutable-style evidence history.
+
+Track:
+
+```text
+Uploaded
+ ↓
+Accessed
+ ↓
+Downloaded
+ ↓
+Reviewed
+```
+
+Never allow normal users to alter evidence history.
+
+---
+
+# 28. IOC MANAGEMENT
+
+Support:
+
+- IP address
+- Domain
+- URL
+- Hash
+- Email
+- Hostname
+- File
+- Malware
+
+Fields:
+
+- IOC type
+- IOC value
+- Source
+- Confidence
+- Description
+- First seen
+- Last seen
+
+---
+
+# 29. THREAT INTELLIGENCE
+
+Create an integration-ready architecture.
+
+Allow future integration with legitimate threat-intelligence providers.
+
+Display:
+
+- Reputation
+- Confidence
+- Source
+- First seen
+- Last seen
+
+Do not automatically take destructive action based on external intelligence.
+
+---
+
+# 30. INCIDENT CORRELATION
+
+Allow incidents to be linked.
+
+Example:
+
+```text
+INC-001
+   ↕
+INC-005
+   ↕
+INC-010
+```
+
+Relationships:
+
+- Related
+- Duplicate
+- Parent
+- Child
+- Caused by
+
+---
+
+# 31. DUPLICATE DETECTION
+
+Detect potential duplicates based on:
+
+- Similar title
+- Similar description
+- Same system
+- Same category
+- Similar time
+- Similar indicators
+
+Display:
+
+> Possible duplicate detected.
+
+Allow analyst decision.
+
+---
+
+# 32. COMMENTS AND COLLABORATION
+
+Support:
+
+- Comments
+- Replies
+- Mentions
+- Attachments
+- Internal notes
+- Reporter-visible messages
+
+Clearly separate:
+
+**Internal Security Notes**
+
+and
+
+**Reporter Communication**
+
+---
+
+# 33. TIMELINE
+
+Automatically generate a visual timeline.
+
+Example:
+
+```text
+09:30 Incident Reported
+09:35 Categorized
+09:40 Severity High
+09:45 Analyst Assigned
+10:00 Investigation Started
+10:30 Evidence Added
+11:00 Contained
+12:00 Resolved
+13:00 Closed
+```
+
+---
+
+# 34. NOTIFICATIONS
+
+Implement:
+
+### In-app notifications
+
+### Email-ready notifications
+
+Trigger on:
+
+- Incident submitted
+- Analyst assigned
+- Severity changed
+- Status changed
+- Comment added
+- Evidence uploaded
+- Information requested
+- SLA warning
+- SLA breach
+- Escalation
+- Resolution
+- Closure
+- Reopening
+
+---
+
+# 35. REAL-TIME UPDATES
+
+Use Supabase Realtime for:
+
+- New incidents
+- Assignment changes
+- Status changes
+- Comments
+- Notifications
+
+---
+
+# 36. SLA MANAGEMENT
+
+Default:
+
+```text
+CRITICAL → 15 minutes
+HIGH     → 1 hour
+MEDIUM   → 4 hours
+LOW      → 24 hours
+```
+
+Track:
+
+- Time to acknowledge
+- Time to assign
+- Time to investigate
+- Time to resolve
+
+Allow admin configuration.
+
+---
+
+# 37. SLA ESCALATION
+
+If SLA is approaching:
+
+**Warning**
+
+If SLA is exceeded:
+
+**Breach**
+
+Then:
+
+- Notify manager
+- Escalate incident
+- Record audit event
+
+---
+
+# 38. AUTOMATIC ESCALATION
+
+Escalate when:
+
+- Critical severity
+- Very high risk
+- SLA breached
+- Unassigned critical incident
+- Repeated reopening
+- Major business impact
+
+---
+
+# 39. AI INCIDENT ASSISTANT
+
+Create an AI-powered security assistant.
+
+Features:
+
+### Incident Summary
+
+### Category Suggestion
+
+### Severity Suggestion
+
+### Risk Explanation
+
+### Missing Information Detection
+
+### IOC Extraction
+
+### Impact Analysis
+
+### Investigation Checklist
+
+### Defensive Recommendations
+
+### Resolution Summary
+
+### Lessons Learned
+
+Every AI result must clearly say:
+
+> AI-generated content. Verify before taking action.
+
+---
+
+# 40. AI CHAT
+
+Create:
+
+# CyberShield AI Assistant
+
+Example questions:
+
+- Summarize this incident.
+- What information is missing?
+- What category fits this incident?
+- What evidence should be preserved?
+- What defensive response steps should be considered?
+- Explain the risk of this incident.
+- Generate an investigation checklist.
+
+AI must only provide defensive assistance.
+
+---
+
+# 41. AI SECURITY GUARDRAILS
+
+The AI must NOT provide:
+
+- Credential theft instructions
+- Malware
+- Exploitation instructions
+- Unauthorized access techniques
+- Persistence techniques
+- Attack automation
+- Destructive commands
+
+The AI must remain focused on:
+
+**Detection, reporting, investigation, containment, recovery, prevention.**
+
+---
+
+# 42. DASHBOARD
+
+Create different dashboards for every role.
+
+---
+
+## REPORTER DASHBOARD
+
+Cards:
+
+- My Incidents
+- Open
+- Investigating
+- Resolved
+- Drafts
+
+Recent incidents.
+
+---
+
+## ANALYST DASHBOARD
+
+Cards:
+
+- Assigned
+- New
+- Critical
+- High Risk
+- SLA At Risk
+- SLA Breached
+- Resolved
+
+Charts:
+
+- Incidents by category
+- Incidents by severity
+- Incidents over time
+- Status distribution
+
+---
+
+## MANAGER DASHBOARD
+
+Show:
+
+- Organization incidents
+- Critical incidents
+- Analyst workload
+- SLA compliance
+- Average response time
+- Average resolution time
+- Incident trends
+
+---
+
+## ADMIN DASHBOARD
+
+Show:
+
+- Total users
+- Organizations
+- Departments
+- Incidents
+- Active incidents
+- Critical incidents
+- SLA breaches
+- Audit events
+- System health
+
+---
+
+# 43. ANALYTICS
+
+Create:
+
+### Incident Trends
+
+### Category Distribution
+
+### Severity Distribution
+
+### Risk Distribution
+
+### Status Distribution
+
+### Department Distribution
+
+### Analyst Workload
+
+### SLA Performance
+
+### Average Resolution Time
+
+### Critical Incident Trend
+
+Use interactive charts.
+
+---
+
+# 44. INCIDENT HEATMAP
+
+Show incident frequency by:
+
+- Day
+- Time
+- Category
+- Department
+
+---
+
+# 45. SECURITY OPERATIONS STATUS
+
+Calculate:
+
+```text
+NORMAL
+ELEVATED
+HIGH RISK
+CRITICAL
+```
+
+Based on:
+
+- Active incidents
+- Critical incidents
+- High-risk incidents
+- SLA breaches
+
+---
+
+# 46. REPORTING
+
+Create:
+
+- Daily reports
+- Weekly reports
+- Monthly reports
+- Quarterly reports
+- Custom date reports
+
+Reports include:
+
+- Total incidents
+- Categories
+- Severity
+- Risk
+- Status
+- Response time
+- Resolution time
+- SLA compliance
+- Critical incidents
+- Trends
+
+---
+
+# 47. EXPORT
+
+Support:
+
+- CSV
+- XLSX
+- PDF
+
+Exports must respect permissions.
+
+---
+
+# 48. ADMIN PANEL
+
+Create:
+
+### User Management
+
+### Organization Management
+
+### Department Management
+
+### Role Management
+
+### Permission Management
+
+### Category Management
+
+### SLA Management
+
+### Notification Settings
+
+### AI Settings
+
+### Security Settings
+
+### Audit Logs
+
+### System Settings
+
+---
+
+# 49. RBAC
+
+Create permission-based authorization.
+
+Permissions:
+
+```text
+incident.create
+incident.read
+incident.update
+incident.assign
+incident.investigate
+incident.resolve
+incident.close
+
+evidence.upload
+evidence.read
+evidence.download
+
+comment.create
+
+report.view
+report.export
+
+user.manage
+role.manage
+department.manage
+category.manage
+
+audit.view
+
+settings.manage
+```
+
+Do not rely only on frontend restrictions.
+
+Enforce permissions in backend and database.
+
+---
+
+# 50. AUDIT LOGGING
+
+Record:
+
+- Login
+- Logout
+- Incident creation
+- Incident update
+- Category change
+- Severity change
+- Risk change
+- Assignment
+- Evidence upload
+- Evidence access
+- Evidence download
+- Comment
+- Investigation update
+- Status change
+- Resolution
+- Closure
+- User changes
+- Permission changes
+- AI analysis
+
+Include:
+
+- User
+- Action
+- Resource
+- Timestamp
+- IP
+- User agent
+- Old value
+- New value
+
+Never log passwords or secrets.
+
+---
+
+# 51. KNOWLEDGE BASE
+
+Create:
+
+# Cybersecurity Knowledge Base
+
+Categories:
+
+- Phishing
+- Malware
+- Ransomware
+- Password Security
+- Account Security
+- Data Protection
+- Social Engineering
+- Incident Reporting
+
+Features:
+
+- Search
+- Categories
+- Articles
+- Admin CRUD
+- Related articles
+
+---
+
+# 52. LESSONS LEARNED
+
+After incident closure, allow:
+
+- Root cause
+- What happened
+- What worked
+- What failed
+- Preventive actions
+- Recommended policy changes
+- Training recommendations
+
+---
+
+# 53. REPORTER FEEDBACK
+
+After closure:
+
+Allow reporter to submit:
+
+- Satisfaction rating
+- Feedback
+- Additional comments
+
+---
+
+# 54. SECURITY CONTROLS
+
+Implement:
+
+- Secure authentication
+- RBAC
+- RLS
+- Input validation
+- Output sanitization
+- Rate limiting
+- CORS
+- Security headers
+- Secure sessions
+- File validation
+- File size limits
+- Audit logs
+- Error handling
+- Secret management
+- Session expiration
+- Account lockout
+
+---
+
+# 55. FILE SECURITY
+
+Only permit approved file types.
+
+Reject:
+
+```text
+.exe
+.bat
+.cmd
+.ps1
+.sh
+.scr
+```
+
+and other dangerous executable content.
+
+Validate:
+
+- MIME
+- Extension
+- Size
+- Content where feasible
+
+---
+
+# 56. OWASP SECURITY
+
+Design against:
+
+- Injection
+- Broken Access Control
+- Authentication failures
+- Sensitive data exposure
+- Security misconfiguration
+- XSS
+- CSRF
+- Insecure uploads
+- Excessive API requests
+
+---
+
+# 57. DATABASE
+
+Create at minimum:
+
+```text
+organizations
+users
+roles
+permissions
+role_permissions
+departments
+
+incident_categories
+incidents
+incident_assignments
+incident_status_history
+incident_comments
+
+investigations
+investigation_notes
+investigation_checklists
+
+evidence
+evidence_access_logs
+
+indicators_of_compromise
+
+notifications
+
+sla_rules
+sla_events
+escalation_events
+
+ai_analysis
+ai_chat_sessions
+
+audit_logs
+
+knowledge_base_articles
+
+saved_filters
+
+system_settings
+```
+
+---
+
+# 58. INCIDENT TABLE
+
+Include:
+
+```text
+id
+incident_number
+organization_id
+title
+description
+category_id
+incident_type
+severity
+priority
+risk_score
+status
+
+reporter_id
+assigned_to
+department_id
+
+incident_date
+discovery_date
+
+affected_users
+affected_systems
+affected_devices
+
+data_affected
+business_impact
+financial_impact
+
+confidentiality_impact
+integrity_impact
+availability_impact
+
+root_cause
+attack_vector
+resolution
+
+created_at
+updated_at
+resolved_at
+closed_at
+```
+
+---
+
+# 59. DATABASE INDEXING
+
+Add indexes for:
+
+- incident_number
+- organization_id
+- status
+- severity
+- priority
+- category
+- reporter
+- analyst
+- created_at
+- updated_at
+- risk_score
+
+Optimize queries.
+
+---
+
+# 60. ROW LEVEL SECURITY
+
+Implement strict Supabase RLS.
+
+Reporter:
+
+- Create incident
+- View own incidents
+- Update permitted fields
+
+Analyst:
+
+- View authorized incidents
+- Update assigned incidents
+
+Manager:
+
+- View organization incidents
+
+Admin:
+
+- Manage organization data
+
+Auditor:
+
+- Read-only
+
+Super Admin:
+
+- Global access
+
+---
+
+# 61. REST API
+
+Create:
+
+```text
+/api/auth/*
+/api/users/*
+/api/organizations/*
+/api/departments/*
+/api/incidents/*
+/api/investigations/*
+/api/evidence/*
+/api/iocs/*
+/api/comments/*
+/api/notifications/*
+/api/analytics/*
+/api/reports/*
+/api/audit/*
+/api/admin/*
+/api/ai/*
+/api/knowledge-base/*
+```
+
+Use proper HTTP methods.
+
+Validate every request.
+
+Authorize every protected endpoint.
+
+---
+
+# 62. API RESPONSE
+
+Success:
+
+```json
+{
+  "success": true,
+  "data": {},
+  "message": "Success"
+}
+```
+
+Error:
+
+```json
+{
+  "success": false,
+  "message": "Something went wrong",
+  "errorCode": "ERROR_CODE"
+}
+```
+
+Never expose internal errors.
+
+---
+
+# 63. FRONTEND ROUTES
+
+Create:
+
+```text
+/
+/login
+/register
+/forgot-password
+/reset-password
+
+/dashboard
+
+/incidents
+/incidents/new
+/incidents/:id
+/incidents/:id/investigation
+/incidents/:id/evidence
+/incidents/:id/timeline
+
+/notifications
+/profile
+
+/analyst/dashboard
+/analyst/queue
+/analyst/investigations
+
+/manager/dashboard
+/manager/team
+/manager/escalations
+/manager/reports
+
+/admin/dashboard
+/admin/users
+/admin/organizations
+/admin/departments
+/admin/categories
+/admin/roles
+/admin/permissions
+/admin/sla
+/admin/audit-logs
+/admin/settings
+
+/analytics
+/reports
+/knowledge-base
+/ai-assistant
+```
+
+---
+
+# 64. REUSABLE COMPONENTS
+
+Create:
+
+```text
+Sidebar
+Navbar
+DashboardCard
+IncidentTable
+IncidentCard
+IncidentForm
+IncidentWizard
+SeverityBadge
+PriorityBadge
+StatusBadge
+RiskScore
+Timeline
+EvidenceUploader
+EvidenceTable
+IOCManager
+CommentBox
+NotificationPanel
+SearchBar
+FilterPanel
+SavedFilters
+ChartCard
+SLAIndicator
+EscalationBadge
+Modal
+ConfirmDialog
+Toast
+LoadingState
+EmptyState
+ErrorState
+ProtectedRoute
+RoleGuard
+PermissionGuard
+```
+
+---
+
+# 65. RESPONSIVE DESIGN
+
+Support:
+
+- Desktop
+- Laptop
+- Tablet
+- Mobile
+
+Use:
+
+- Responsive sidebar
+- Mobile navigation
+- Responsive tables
+- Mobile cards
+- Responsive forms
+- Responsive charts
+
+---
+
+# 66. ACCESSIBILITY
+
+Implement:
+
+- Keyboard navigation
+- Focus states
+- Labels
+- ARIA where appropriate
+- Accessible dialogs
+- Accessible forms
+- Good contrast
+- Screen reader support
+
+Do not rely only on colors for severity/status.
+
+---
+
+# 67. GLOBAL SEARCH
+
+Create global search.
+
+Search:
+
+- Incidents
+- Users
+- IOCs
+- Categories
+- Knowledge articles
+
+Only display authorized records.
+
+---
+
+# 68. SAVED FILTERS
+
+Allow analysts to save:
+
+- My Critical Incidents
+- High Risk
+- SLA Breached
+- Unassigned
+- Phishing
+- Open Incidents
+
+---
+
+# 69. INCIDENT APPROVAL
+
+For critical incidents:
+
+```text
+Resolved
+ ↓
+Manager Review
+ ↓
+Approved
+ ↓
+Closed
+```
+
+Allow admin configuration.
+
+---
+
+# 70. INCIDENT OWNERSHIP
+
+Every active incident should have:
+
+- Owner
+- Analyst
+- Manager
+- Department
+
+Critical incidents should not remain unassigned.
+
+---
+
+# 71. SYSTEM HEALTH
+
+Admin dashboard:
+
+- API status
+- Database status
+- Storage status
+- Authentication status
+- Notification status
+- AI status
+
+Do not expose infrastructure details to normal users.
+
+---
+
+# 72. DEMO DATA
+
+Create fictional demo data.
+
+Users:
+
+```text
+admin@cybershield.demo
+manager@cybershield.demo
+analyst1@cybershield.demo
+analyst2@cybershield.demo
+employee1@cybershield.demo
+auditor@cybershield.demo
+```
+
+Create at least:
+
+- 30 incidents
+- Multiple categories
+- Multiple severities
+- Multiple statuses
+- Multiple departments
+- Comments
+- Timeline events
+- Evidence metadata
+- IOCs
+- Notifications
+- SLA events
+- Audit logs
+
+Never use real personal data.
+
+---
+
+# 73. DEMO MODE
+
+Create a clear Demo Mode.
+
+Allow quick switching between:
+
+- Reporter
+- Analyst
+- Manager
+- Admin
+- Auditor
+
+Make the complete incident lifecycle easy to demonstrate.
+
+---
+
+# 74. DEMO SCENARIO
+
+The primary demo should be:
+
+### PHISHING INCIDENT
+
+Employee:
+
+1. Logs in
+2. Reports phishing
+3. Adds description
+4. Uploads screenshot
+5. AI suggests Phishing
+6. Incident is submitted
+7. Incident ID generated
+
+Analyst:
+
+8. Receives notification
+9. Opens incident
+10. Confirms category
+11. Sets High severity
+12. Risk score calculated
+13. Assigns self
+14. Starts investigation
+15. Reviews evidence
+16. Adds IOC
+17. Uses AI summary
+18. Documents containment
+19. Marks resolved
+
+Manager:
+
+20. Reviews incident
+21. Approves closure
+
+System:
+
+22. Sends reporter notification
+23. Updates analytics
+24. Creates audit events
+25. Includes incident in reports
+
+---
+
+# 75. TESTING
+
+Create unit tests and integration tests.
+
+Test:
+
+### Authentication
+
+- Registration
+- Login
+- Logout
+- Password reset
+
+### Authorization
+
+- Reporter
+- Analyst
+- Manager
+- Admin
+- Auditor
+
+### Incidents
+
+- Create
+- Read
+- Update
+- Assign
+- Status
+- Resolve
+- Close
+- Reopen
+
+### Evidence
+
+- Upload
+- Invalid file
+- Oversized file
+- Access restrictions
+
+### Notifications
+
+- Creation
+- Delivery
+- Read status
+
+### AI
+
+- Summary
+- Categorization
+- Risk recommendation
+- IOC extraction
+
+---
+
+# 76. SECURITY TESTING
+
+Test against:
+
+- Unauthorized API access
+- Broken role permissions
+- Invalid sessions
+- Expired sessions
+- Malicious file upload
+- XSS
+- SQL injection
+- CSRF
+- Rate abuse
+- Cross-organization data access
+
+---
+
+# 77. ERROR HANDLING
+
+Create centralized backend error handling.
+
+Never expose:
+
+- Stack traces
+- Database credentials
+- API keys
+- Tokens
+- Internal implementation details
+
+Provide useful user-friendly messages.
+
+---
+
+# 78. LOGGING
+
+Use structured logs.
+
+Record:
+
+- Authentication events
+- API errors
+- System events
+- Security events
+
+Never log:
+
+- Passwords
+- Tokens
+- API keys
+- Sensitive secrets
+
+---
+
+# 79. ENVIRONMENT VARIABLES
+
+Create:
+
+```text
+.env.example
+```
+
+Include:
+
+```text
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+DATABASE_URL=
+
+JWT_SECRET=
+JWT_REFRESH_SECRET=
+
+AI_API_KEY=
+
+EMAIL_API_KEY=
+```
+
+Never commit `.env`.
+
+Create `.gitignore`.
+
+---
+
+# 80. PROJECT STRUCTURE
+
+Use:
+
+```text
+cybershield/
+│
+├── client/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── layouts/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   ├── contexts/
+│   │   ├── types/
+│   │   ├── utils/
+│   │   └── validations/
+│   │
+│   └── package.json
+│
+├── server/
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── routes/
+│   │   ├── middleware/
+│   │   ├── services/
+│   │   ├── validators/
+│   │   ├── utils/
+│   │   ├── config/
+│   │   └── types/
+│   │
+│   └── package.json
+│
+├── supabase/
+│   ├── migrations/
+│   ├── functions/
+│   └── seed/
+│
+├── tests/
+├── docs/
+│
+├── .env.example
+├── .gitignore
+├── README.md
+└── package.json
+```
+
+---
+
+# 81. DOCUMENTATION
+
+Generate:
+
+## README.md
+
+Include:
+
+- Problem statement
+- Proposed solution
+- Features
+- User roles
+- Architecture
+- Technology stack
+- Database
+- API
+- Security
+- AI
+- Installation
+- Configuration
+- Testing
+- Deployment
+- Future scope
+
+Also create:
+
+- API documentation
+- Database documentation
+- User guide
+- Architecture documentation
+
+---
+
+# 82. DEPLOYMENT
+
+Make deployment-ready.
+
+Recommended architecture:
+
+```text
+React
+ ↓
+Frontend Hosting
+
+Express
+ ↓
+Backend Hosting
+
+Supabase
+ ↓
+PostgreSQL + Auth + Storage + Realtime
+```
+
+Use environment variables for production.
+
+---
+
+# 83. CI/CD READY
+
+Prepare:
+
+- Linting
+- Formatting
+- Unit tests
+- Integration tests
+- Build validation
+- Security checks
+
+Create CI/CD configuration where practical.
+
+---
+
+# 84. PERFORMANCE
+
+Implement:
+
+- Pagination
+- Lazy loading
+- Database indexes
+- Efficient queries
+- Debounced search
+- Caching where appropriate
+- Optimized API responses
+- Optimized file loading
+
+---
+
+# 85. COMPLIANCE-READY DESIGN
+
+Design reporting/audit capabilities that can support organizations working toward:
+
+- NIST Cybersecurity Framework
+- NIST Incident Response guidance
+- ISO 27001
+- SOC 2
+
+Do NOT falsely claim that the application is certified or compliant.
+
+---
+
+# 86. FUTURE INTEGRATIONS
+
+Create integration-ready architecture for:
+
+- SIEM
+- SOAR
+- EDR
+- Email security
+- Identity providers
+- Threat intelligence
+- Cloud security
+- Slack
+- Microsoft Teams
+- Enterprise email
+- Ticketing systems
+
+Do not implement unauthorized access.
+
+---
+
+# 87. SECURITY BOUNDARY
+
+This is a defensive cybersecurity application.
+
+The application must NOT implement:
+
+- Malware deployment
+- Credential theft
+- Unauthorized access
+- Exploitation
+- Persistence
+- Attack automation
+- Destructive actions
+- Security bypasses
+
+AI must remain defensive.
+
+---
+
+# 88. DEVELOPMENT STRATEGY
+
+Do NOT build everything as one huge untested implementation.
+
+Build incrementally.
+
+After each major feature:
+
+1. Run the application.
+2. Check frontend.
+3. Check backend.
+4. Check database.
+5. Test APIs.
+6. Test permissions.
+7. Fix errors.
+8. Continue.
+
+Never leave:
+
+- Broken buttons
+- Fake navigation
+- Placeholder functionality
+- Hard-coded core logic
+- Missing error handling
+
+---
+
+# 89. DEVELOPMENT PHASES
+
+## Phase 1
+
+Project initialization.
+
+## Phase 2
+
+Supabase setup.
+
+## Phase 3
+
+Database schema.
+
+## Phase 4
+
+Authentication.
+
+## Phase 5
+
+RBAC.
+
+## Phase 6
+
+Incident reporting.
+
+## Phase 7
+
+Incident queue.
+
+## Phase 8
+
+Incident details.
+
+## Phase 9
+
+Investigation.
+
+## Phase 10
+
+Evidence.
+
+## Phase 11
+
+IOC management.
+
+## Phase 12
+
+Timeline.
+
+## Phase 13
+
+Comments.
+
+## Phase 14
+
+Notifications.
+
+## Phase 15
+
+SLA.
+
+## Phase 16
+
+Escalation.
+
+## Phase 17
+
+Dashboards.
+
+## Phase 18
+
+Analytics.
+
+## Phase 19
+
+Reports.
+
+## Phase 20
+
+Admin.
+
+## Phase 21
+
+Audit logs.
+
+## Phase 22
+
+AI.
+
+## Phase 23
+
+Knowledge base.
+
+## Phase 24
+
+Security testing.
+
+## Phase 25
+
+Performance.
+
+## Phase 26
+
+Deployment.
+
+---
+
+# 90. FINAL ACCEPTANCE CRITERIA
+
+The project is complete only when:
+
+### Authentication
+
+☐ Register  
+☐ Login  
+☐ Logout  
+☐ Password reset  
+☐ Protected routes  
+☐ RBAC  
+
+### Reporting
+
+☐ Create incident  
+☐ Save draft  
+☐ Categorize  
+☐ Severity  
+☐ Priority  
+☐ Risk score  
+☐ Evidence  
+☐ Incident ID  
+
+### Tracking
+
+☐ Search  
+☐ Filters  
+☐ Assignment  
+☐ Status  
+☐ Timeline  
+☐ Comments  
+☐ SLA  
+
+### Investigation
+
+☐ Investigation notes  
+☐ Checklist  
+☐ IOC management  
+☐ Evidence review  
+☐ Root cause  
+☐ Resolution  
+
+### Response
+
+☐ Containment  
+☐ Eradication  
+☐ Recovery  
+☐ Resolution  
+☐ Closure  
+
+### Notifications
+
+☐ In-app  
+☐ Email-ready  
+☐ SLA alerts  
+☐ Escalations  
+
+### Analytics
+
+☐ Dashboard  
+☐ Charts  
+☐ Trends  
+☐ Heatmap  
+☐ Analyst workload  
+
+### Reports
+
+☐ Daily  
+☐ Weekly  
+☐ Monthly  
+☐ Custom  
+☐ CSV  
+☐ XLSX  
+☐ PDF  
+
+### Administration
+
+☐ Users  
+☐ Organizations  
+☐ Departments  
+☐ Roles  
+☐ Permissions  
+☐ Categories  
+☐ SLA  
+☐ Settings  
+
+### Security
+
+☐ RLS  
+☐ RBAC  
+☐ Validation  
+☐ Rate limiting  
+☐ File security  
+☐ Audit logs  
+☐ Secure secrets  
+
+### AI
+
+☐ Categorization  
+☐ Summary  
+☐ Risk recommendation  
+☐ IOC extraction  
+☐ Missing information  
+☐ Defensive recommendations  
+☐ AI chat  
+
+---
+
+# 91. FINAL PRODUCT REQUIREMENT
+
+The final application must clearly solve:
+
+> **"Build a platform where organizations can report, categorize, and track cybersecurity incidents."**
+
+The project should demonstrate a complete lifecycle rather than only incident submission.
+
+The final system must be:
+
+- Fully functional
+- Database-driven
+- Secure
+- Responsive
+- Scalable
+- Professional
+- AI-assisted
+- Auditable
+- Well documented
+- Demo-ready
+
+---
+
+# 92. MOST IMPORTANT INSTRUCTION
+
+Do not stop after creating the landing page.
+
+Do not create only static mockups.
+
+Do not fake database operations.
+
+Do not leave buttons non-functional.
+
+Do not use hard-coded data for core features.
+
+Build the actual application.
+
+When a feature requires an external service and the credentials are unavailable, create a clean integration interface and a safe demo/mock provider so the application still functions.
+
+Always prioritize:
+
+**Security → Functionality → Data integrity → User experience → Performance**
+
+---
+
+# 93. FINAL DEMO FLOW
+
+The final application must allow a judge to experience:
+
+```text
+LOGIN
+ ↓
+REPORT INCIDENT
+ ↓
+UPLOAD EVIDENCE
+ ↓
+AI CATEGORIZATION
+ ↓
+RISK ASSESSMENT
+ ↓
+INCIDENT ID
+ ↓
+ANALYST NOTIFICATION
+ ↓
+INCIDENT QUEUE
+ ↓
+ASSIGNMENT
+ ↓
+INVESTIGATION
+ ↓
+IOC MANAGEMENT
+ ↓
+EVIDENCE REVIEW
+ ↓
+AI ASSISTANCE
+ ↓
+CONTAINMENT
+ ↓
+ERADICATION
+ ↓
+RECOVERY
+ ↓
+RESOLUTION
+ ↓
+MANAGER APPROVAL
+ ↓
+CLOSURE
+ ↓
+REPORTER NOTIFICATION
+ ↓
+AUDIT LOG
+ ↓
+ANALYTICS
+ ↓
+MANAGEMENT REPORT
+```
+
+---
+
+# 94. START BUILDING NOW
+
+Start by:
+
+1. Inspecting the current Replit project.
+2. Creating the project structure.
+3. Installing required dependencies.
+4. Setting up Supabase.
+5. Creating database migrations.
+6. Creating authentication.
+7. Creating RBAC.
+8. Creating the core UI.
+9. Building the incident-reporting workflow.
+10. Connecting frontend and backend.
+11. Testing each feature.
+12. Continuing through all modules.
+13. Fixing all errors.
+14. Preparing the final application for deployment.
+
+Do not ask me to manually write every file unless absolutely necessary.
+
+Make sensible technical decisions yourself.
+
+When you encounter an implementation choice, choose the solution that provides the best combination of:
+
+**security + maintainability + simplicity + scalability + demo quality.**
+
+At the end, provide:
+
+1. What was built
+2. Project structure
+3. Database tables
+4. Environment variables required
+5. How to run the application
+6. Demo credentials
+7. Features completed
+8. Features requiring external API keys
+9. Testing status
+10. Deployment instructions
+
+# FINAL BRANDING
+
+## 🛡️ CyberShield
+
+### **Report. Categorize. Track. Respond. Resolve. Stay Secure.**
+
+Build the complete application now.

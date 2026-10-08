@@ -1,0 +1,1 @@
+- [Generated fetch client DOM types](generated-fetch-dom-iterable.md) — Orval's Headers.entries helper needs TypeScript's dom.iterable library.

@@ -1,0 +1,325 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: CyberShield defensive incident management API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: incidents
+    description: Incident reporting and response
+  - name: dashboard
+    description: Operational summaries
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /dashboard:
+    get:
+      operationId: getDashboard
+      tags: [dashboard]
+      summary: Get operational dashboard data
+      responses:
+        "200":
+          description: Dashboard summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Dashboard"
+  /incidents:
+    get:
+      operationId: listIncidents
+      tags: [incidents]
+      summary: List incidents with optional filters
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: status
+          schema: { type: string }
+        - in: query
+          name: severity
+          schema: { type: string }
+      responses:
+        "200":
+          description: Incident records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Incident"
+    post:
+      operationId: createIncident
+      tags: [incidents]
+      summary: Submit a new incident report
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IncidentInput"
+      responses:
+        "201":
+          description: Created incident
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Incident"
+  /incidents/{incidentId}:
+    get:
+      operationId: getIncident
+      tags: [incidents]
+      summary: Get an incident and its investigation history
+      parameters:
+        - in: path
+          name: incidentId
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Incident detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IncidentDetail"
+        "404":
+          description: Incident not found
+    patch:
+      operationId: updateIncident
+      tags: [incidents]
+      summary: Update incident triage and response fields
+      parameters:
+        - in: path
+          name: incidentId
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IncidentUpdate"
+      responses:
+        "200":
+          description: Updated incident
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Incident"
+  /incidents/{incidentId}/comments:
+    post:
+      operationId: addIncidentComment
+      tags: [incidents]
+      summary: Add a reporter-visible or internal comment
+      parameters:
+        - in: path
+          name: incidentId
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommentInput"
+      responses:
+        "201":
+          description: Added comment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IncidentComment"
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    Incident:
+      type: object
+      required: [id, incidentNumber, title, description, category, severity, priority, riskScore, status, reporter, department, assignedTo, createdAt, updatedAt]
+      properties:
+        id: { type: integer }
+        incidentNumber: { type: string }
+        title: { type: string }
+        description: { type: string }
+        category: { type: string }
+        severity: { type: string }
+        priority: { type: string }
+        riskScore: { type: integer }
+        status: { type: string }
+        reporter: { type: string }
+        department: { type: string }
+        assignedTo: { type: ["string", "null"] }
+        affectedSystem: { type: ["string", "null"] }
+        affectedUsers: { type: integer }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+        slaDueAt: { type: string, format: date-time }
+    IncidentDetail:
+      allOf:
+        - $ref: "#/components/schemas/Incident"
+        - type: object
+          required: [timeline, comments, evidence, iocs, checklist]
+          properties:
+            incidentDate: { type: string, format: date-time }
+            discoveryDate: { type: string, format: date-time }
+            location: { type: ["string", "null"] }
+            impact: { type: string }
+            rootCause: { type: ["string", "null"] }
+            attackVector: { type: ["string", "null"] }
+            resolution: { type: ["string", "null"] }
+            containment: { type: ["string", "null"] }
+            eradication: { type: ["string", "null"] }
+            recovery: { type: ["string", "null"] }
+            timeline:
+              type: array
+              items: { $ref: "#/components/schemas/TimelineEvent" }
+            comments:
+              type: array
+              items: { $ref: "#/components/schemas/IncidentComment" }
+            evidence:
+              type: array
+              items: { $ref: "#/components/schemas/Evidence" }
+            iocs:
+              type: array
+              items: { $ref: "#/components/schemas/Ioc" }
+            checklist:
+              type: array
+              items: { $ref: "#/components/schemas/ChecklistItem" }
+    IncidentInput:
+      type: object
+      required: [title, description, category, reporter, department]
+      properties:
+        title: { type: string, minLength: 3 }
+        description: { type: string, minLength: 10 }
+        category: { type: string }
+        reporter: { type: string }
+        department: { type: string }
+        severity: { type: string }
+        affectedSystem: { type: string }
+        affectedUsers: { type: integer, minimum: 0 }
+        impact: { type: string }
+        location: { type: string }
+    IncidentUpdate:
+      type: object
+      properties:
+        status: { type: string }
+        severity: { type: string }
+        priority: { type: string }
+        riskScore: { type: integer, minimum: 0, maximum: 100 }
+        assignedTo: { type: ["string", "null"] }
+        rootCause: { type: ["string", "null"] }
+        attackVector: { type: ["string", "null"] }
+        containment: { type: ["string", "null"] }
+        eradication: { type: ["string", "null"] }
+        recovery: { type: ["string", "null"] }
+        resolution: { type: ["string", "null"] }
+    CommentInput:
+      type: object
+      required: [author, message, visibility]
+      properties:
+        author: { type: string }
+        message: { type: string, minLength: 1 }
+        visibility: { type: string, enum: [reporter, internal] }
+    IncidentComment:
+      type: object
+      required: [id, author, message, visibility, createdAt]
+      properties:
+        id: { type: integer }
+        author: { type: string }
+        message: { type: string }
+        visibility: { type: string, enum: [reporter, internal] }
+        createdAt: { type: string, format: date-time }
+    TimelineEvent:
+      type: object
+      required: [id, label, detail, actor, createdAt, kind]
+      properties:
+        id: { type: integer }
+        label: { type: string }
+        detail: { type: string }
+        actor: { type: string }
+        kind: { type: string }
+        createdAt: { type: string, format: date-time }
+    Evidence:
+      type: object
+      required: [id, filename, type, size, hash, uploadedBy, uploadedAt]
+      properties:
+        id: { type: integer }
+        filename: { type: string }
+        type: { type: string }
+        size: { type: string }
+        hash: { type: string }
+        uploadedBy: { type: string }
+        uploadedAt: { type: string, format: date-time }
+    Ioc:
+      type: object
+      required: [id, type, value, confidence]
+      properties:
+        id: { type: integer }
+        type: { type: string }
+        value: { type: string }
+        confidence: { type: integer }
+    ChecklistItem:
+      type: object
+      required: [id, label, completed]
+      properties:
+        id: { type: integer }
+        label: { type: string }
+        completed: { type: boolean }
+    Dashboard:
+      type: object
+      required: [total, open, critical, highRisk, slaAtRisk, slaBreached, resolved, categories, severities, weeklyTrend, recentActivity]
+      properties:
+        total: { type: integer }
+        open: { type: integer }
+        critical: { type: integer }
+        highRisk: { type: integer }
+        slaAtRisk: { type: integer }
+        slaBreached: { type: integer }
+        resolved: { type: integer }
+        categories:
+          type: array
+          items: { $ref: "#/components/schemas/CountItem" }
+        severities:
+          type: array
+          items: { $ref: "#/components/schemas/CountItem" }
+        weeklyTrend:
+          type: array
+          items: { $ref: "#/components/schemas/TrendItem" }
+        recentActivity:
+          type: array
+          items: { $ref: "#/components/schemas/TimelineEvent" }
+    CountItem:
+      type: object
+      required: [name, count]
+      properties:
+        name: { type: string }
+        count: { type: integer }
+    TrendItem:
+      type: object
+      required: [day, reported, resolved]
+      properties:
+        day: { type: string }
+        reported: { type: integer }
+        resolved: { type: integer }
+
